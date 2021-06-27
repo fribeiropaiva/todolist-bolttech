@@ -14,18 +14,27 @@ export const Header = styled.header`
   .header__inner-container {
     padding: 1%;
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    p {
+      font-size: 1.2rem;
+      color: gray;
+    }
+
+    div {
+      width: 10%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      ul {
+        list-style: none;
+      }
+    }
   }
 
-  p {
-    font-size: 1.2rem;
-    color: gray;
-  }
-
-  div {
-    width: 10%;
-    height: 100%;
-  }
 `
