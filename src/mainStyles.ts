@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-export const Container = styled.main`
-  width: 100%;
-  height: 100%;
-`
-
 export const Header = styled.header`
   height: 100px;
   width: 100%;
@@ -36,5 +31,21 @@ export const Header = styled.header`
       }
     }
   }
+`
 
+export const Main = styled.main`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`
+
+export const ProjectsArea = styled.section`
+  flex: 2;
+  flex-wrap: wrap;
+  padding: 1%;
+`
+
+export const CreateProjectsArea = styled.aside`
+  flex: 1;
+  padding: 1%;
 `

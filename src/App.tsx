@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container, Header } from './mainStyles';
+import { Header, Main, ProjectsArea, CreateProjectsArea } from './mainStyles';
 import { GlobalStyle } from './globalStyles';
 
 function App() {
   return (
-    <Container>
+    <>
       <GlobalStyle />
       <Header className="App-header">
         <div className="header__inner-container">
@@ -17,7 +17,11 @@ function App() {
           </div>
         </div>
       </Header>
-    </Container>
+      <Main>
+        <ProjectsArea></ProjectsArea>
+        <CreateProjectsArea></CreateProjectsArea>
+      </Main>
+    </>
   );
 }
 
