@@ -10,12 +10,15 @@ interface ProjectProps {
   name: string;
   id: string;
   deleteProject: (id: string) => void;
+  editProject: (id:string, newProjectName:string) => void;
 }
 
-const Project = ({ todos, name, id, deleteProject }:ProjectProps) => {
+const Project = ({ todos, name, id, deleteProject, editProject }:ProjectProps) => {
   const [projectTodos, setProjectTodos] = useState(todos);
   const [newTodo, setNewTodo] = useState('');
-  const [dones, setDones] = useState<Array<ToDoProps>>([])
+  const [dones, setDones] = useState<Array<ToDoProps>>([]);
+  const [editingMode, setEditingMode] = useState(false);
+  const [newProjectName, setNewProjectName] = useState(name);
 
   const handleTodoCreation = () => {
     const todo = {
@@ -62,15 +65,38 @@ const Project = ({ todos, name, id, deleteProject }:ProjectProps) => {
     deleteProject(id);
   }
 
+  const handleProjectEditing = (id: string, newProjectName: string) => {
+    editProject(id, newProjectName);
+    setEditingMode(false);
+  }
+
   return (
     <Container key={id} >
       <header>
         <div className='header__inner-container'>
-          <p>{name}</p>
-          <div className='buttons-container'>
-            <button onClick={() => console.log('editing')}><MdEdit size={15} /></button>
-            <button onClick={() => handleProjectDeletion(id)}><RiDeleteBinLine size={15} /></button>
-          </div>
+          {editingMode ?
+            <label>
+              <input
+                className='project-editing-input'
+                type='text'
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewProjectName(e.target.value)}
+                value={newProjectName}
+              />
+              <button
+                className='save-project-editing'
+                type='button'
+                onClick={() => handleProjectEditing(id, newProjectName)}
+                >Save</button>
+            </label>
+            :
+            <>
+              <p>{name}</p>
+              <div className='buttons-container'>
+                <button onClick={() => setEditingMode(true)}><MdEdit size={15} /></button>
+                <button onClick={() => handleProjectDeletion(id)}><RiDeleteBinLine size={15} /></button>
+              </div>
+            </>
+          }
         </div>
       </header>
       <div className='content'>

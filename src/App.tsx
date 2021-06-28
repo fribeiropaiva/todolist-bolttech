@@ -45,6 +45,17 @@ function App() {
     setNewProjects(updatedProjects);
   }
 
+  const handleProjectEditing = (id:string, newProjectName:string) => {
+    const updatedProjects = projects.filter(project => {
+      if (project.id === id) {
+        project.name = newProjectName;
+      }
+      return project;
+    });
+
+    setNewProjects(updatedProjects);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -62,7 +73,7 @@ function App() {
       <Main>
         <ProjectsArea>
           {projects.map(project => {
-            return <Project key={project.id} todos={project.todos} id={project.id} name={project.name} deleteProject={handleProjectDeletion} />
+            return <Project key={project.id} todos={project.todos} id={project.id} name={project.name} deleteProject={handleProjectDeletion} editProject={handleProjectEditing} />
           })}
         </ProjectsArea>
         <CreateProjectsArea>

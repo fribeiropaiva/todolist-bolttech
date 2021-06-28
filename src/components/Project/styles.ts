@@ -35,6 +35,22 @@ export const Container = styled.article`
         }
       }
     }
+
+    .project-editing-input {
+      border-radius: 5px;
+      border: none;
+      padding: 3px 8px;
+      border: 1px solid #efefef;
+    }
+
+    .save-project-editing {
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: none;
+      color: white;
+      background: #00c137;
+      margin-left: 5px;
+    }
   }
 
   .content {
