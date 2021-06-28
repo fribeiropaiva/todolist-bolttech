@@ -3,8 +3,8 @@ import { Container } from './styles';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { MdEdit } from 'react-icons/md';
 
-interface TaskProps {
-  id: number;
+export interface ToDoProps {
+  id: string;
   taskName: string;
   isChecked: boolean;
   editTask: (id:number, newTaskName:string) => void;
@@ -12,7 +12,7 @@ interface TaskProps {
   handleTaskCompletion: (id:number) => void;
 }
 
-const ToDo = ({id, taskName, isChecked, editTask, deleteTask, handleTaskCompletion }: TaskProps) => {
+const ToDo = ({id, taskName, isChecked, editTask, deleteTask, handleTaskCompletion }: ToDoProps) => {
   const [editingMode, setEditingMode] = useState(false);
   const [newTaskName, setNewTaskName] = useState('')
 

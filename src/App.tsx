@@ -1,10 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header, Main, ProjectsArea, CreateProjectsArea } from './mainStyles';
 import { GlobalStyle } from './globalStyles';
 import CreateProject from './components/CreateProject';
 import Project from './components/Project';
 
+export interface ToDoProps {
+  name: string;
+  id: string;
+  isCompleted: boolean;
+}
+
+interface ProjectProps {
+  name: string;
+  id: string;
+  createDate: Date,
+  todos: Array<ToDoProps>;
+  dones: Array<ToDoProps>;
+}
+
 function App() {
+  const [projects, setNewProjects] = useState<Array<ProjectProps>>([]);
+
+  const createNewProject = (projectName: string) => {
+    const now = new Date();
+    const newProject = {
+      name: projectName,
+      id: projectName + now,
+      createDate: now,
+      todos: [],
+      dones: []
+    }
+
+    console.log(newProject)
+
+    //send to db
+
+    setNewProjects((projects: Array<ProjectProps>) => [...projects, newProject]);
+    console.log(projects);
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -21,13 +55,12 @@ function App() {
       </Header>
       <Main>
         <ProjectsArea>
-          <Project />
-          <Project />
-          <Project />
-          <Project />
+          {projects.map(project => {
+            return <Project key={project.id} todos={project.todos} id={project.id} name={project.name} />
+          })}
         </ProjectsArea>
         <CreateProjectsArea>
-          <CreateProject />
+          <CreateProject handleCreateNewProject={createNewProject} />
         </CreateProjectsArea>
       </Main>
     </>
