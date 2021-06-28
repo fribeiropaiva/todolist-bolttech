@@ -9,9 +9,10 @@ interface ProjectProps {
   todos: Array<ToDoProps>;
   name: string;
   id: string;
+  deleteProject: (id: string) => void;
 }
 
-const Project = ({ todos, name, id}:ProjectProps) => {
+const Project = ({ todos, name, id, deleteProject }:ProjectProps) => {
   const [projectTodos, setProjectTodos] = useState(todos);
   const [newTodo, setNewTodo] = useState('');
   const [dones, setDones] = useState<Array<ToDoProps>>([])
@@ -57,14 +58,18 @@ const Project = ({ todos, name, id}:ProjectProps) => {
     setProjectTodos(updatedTodos);
   }
 
+  const handleProjectDeletion = (id: string) => {
+    deleteProject(id);
+  }
+
   return (
     <Container key={id} >
       <header>
         <div className='header__inner-container'>
           <p>{name}</p>
           <div className='buttons-container'>
-            <button><MdEdit size={15} /></button>
-            <button><RiDeleteBinLine size={15} /></button>
+            <button onClick={() => console.log('editing')}><MdEdit size={15} /></button>
+            <button onClick={() => handleProjectDeletion(id)}><RiDeleteBinLine size={15} /></button>
           </div>
         </div>
       </header>
