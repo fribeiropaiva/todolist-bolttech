@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Container } from './styles';
 import { MdEdit } from 'react-icons/md';
 import { RiDeleteBinLine } from 'react-icons/ri';
@@ -11,6 +12,19 @@ interface ProjectProps {
 }
 
 const Project = ({ todos, name, id}:ProjectProps) => {
+  const [projectTodos, setProjectTodos] = useState(todos);
+  const [newTodo, setNewTodo] = useState('');
+
+  const handleTodoCreation = () => {
+    const todo = {
+      name: newTodo,
+      id: name + newTodo + id,
+      isCompleted: false,
+    }
+
+    setProjectTodos((projectTodos) => [...projectTodos, todo]);
+  }
+
   return (
     <Container key={id} >
       <header>
@@ -27,15 +41,15 @@ const Project = ({ todos, name, id}:ProjectProps) => {
           <div className='todos-container'>
             <p>To Do</p>
             <ul>
-              {todos.map((todo:ToDoProps) => {
-                <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTask={() => console.log('editing')} deleteTask={() => console.log('deleting')} handleTaskCompletion={() => console.log('completing')} />
+              {projectTodos.map((todo:ToDoProps) => {
+                return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTask={() => console.log('editing')} deleteTask={() => console.log('deleting')} handleTaskCompletion={() => console.log('completing')} />
               })}
             </ul>
           </div>
           <div className='dones-container'>
             <p>Done</p>
             <ul className='todo-list'>
-              {todos.map((todo: ToDoProps) => {
+              {projectTodos.map((todo: ToDoProps) => {
                   if (todo.isCompleted) {
                     return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTask={() => console.log('editing')} deleteTask={() => console.log('deleting')} handleTaskCompletion={() => console.log('completing')} />
                   }
@@ -46,8 +60,8 @@ const Project = ({ todos, name, id}:ProjectProps) => {
         </div>
       </div>
       <footer>
-        <input type='text' placeholder='task' />
-        <button>Add</button>
+        <input value={newTodo} type='text' placeholder='task' onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewTodo(e.target.value)}/>
+        <button onClick={handleTodoCreation}>Add</button>
       </footer>
     </Container>
   )
