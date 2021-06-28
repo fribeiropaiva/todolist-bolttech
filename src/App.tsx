@@ -22,6 +22,9 @@ function App() {
       <Main>
         <ProjectsArea>
           <Project />
+          <Project />
+          <Project />
+          <Project />
         </ProjectsArea>
         <CreateProjectsArea>
           <CreateProject />

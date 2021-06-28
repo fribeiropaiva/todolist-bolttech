@@ -43,6 +43,8 @@ export const ProjectsArea = styled.section`
   flex: 2;
   flex-wrap: wrap;
   padding: 1%;
+  display: flex;
+  justify-content: space-between;
 `
 
 export const CreateProjectsArea = styled.aside`

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Container = styled.article`
-  width: 50%;
+  width: 48.4%;
   border: 1px solid #efefef;
   border-radius: 5px;
   overflow: hidden;
+  margin-bottom: 3%;
 
   header {
     height: 40px;
@@ -25,6 +26,7 @@ export const Container = styled.article`
           border: none;
           background: transparent;
           margin-right: 3px;
+          cursor: pointer;
 
           svg {
             fill: #89b0c2;
