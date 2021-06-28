@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  height: 100px;
+  height: 80px;
   width: 100%;
   border-bottom: 1px solid #efefef;
   margin: 0 auto;
+  background: linear-gradient(360deg, rgba(249,249,249,1) 17%, rgba(253,253,253,1) 50%);
 
   .header__inner-container {
     padding: 1%;
