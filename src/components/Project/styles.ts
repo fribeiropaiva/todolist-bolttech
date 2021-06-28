@@ -6,6 +6,7 @@ export const Container = styled.article`
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 3%;
+  align-self: baseline;
 
   header {
     height: 40px;
