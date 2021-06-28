@@ -2,6 +2,7 @@ import React from 'react';
 import { Header, Main, ProjectsArea, CreateProjectsArea } from './mainStyles';
 import { GlobalStyle } from './globalStyles';
 import CreateProject from './components/CreateProject';
+import Project from './components/Project';
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
         </div>
       </Header>
       <Main>
-        <ProjectsArea></ProjectsArea>
+        <ProjectsArea>
+          <Project />
+        </ProjectsArea>
         <CreateProjectsArea>
           <CreateProject />
         </CreateProjectsArea>
