@@ -8,11 +8,11 @@ export interface ToDoProps {
   taskName: string;
   isChecked: boolean;
   editTask: (id:number, newTaskName:string) => void;
-  deleteTask: (id:number) => void;
+  deleteTodo: (id:string) => void;
   handleTaskCompletion: (id:number) => void;
 }
 
-const ToDo = ({id, taskName, isChecked, editTask, deleteTask, handleTaskCompletion }: ToDoProps) => {
+const ToDo = ({id, taskName, isChecked, editTask, deleteTodo, handleTaskCompletion }: ToDoProps) => {
   const [editingMode, setEditingMode] = useState(false);
   const [newTaskName, setNewTaskName] = useState('')
 
@@ -52,7 +52,7 @@ const ToDo = ({id, taskName, isChecked, editTask, deleteTask, handleTaskCompleti
       </div>
       <div className='action-buttons'>
         <button className='edit-button' type='button' onClick={() => console.log('editing')}><MdEdit size={15}/></button>
-        <button className='delete-button' type='button' onClick={() => console.log('deleting')}><RiDeleteBinLine size={15}/></button>
+        <button className='delete-button' type='button' onClick={() => deleteTodo(id)}><RiDeleteBinLine size={15}/></button>
       </div>
     </Container>
   )
