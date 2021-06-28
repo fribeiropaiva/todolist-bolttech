@@ -33,8 +33,6 @@ function App() {
       dones: []
     }
 
-    //send to db
-
     setNewProjects((projects: Array<ProjectProps>) => [...projects, newProject]);
   }
 
@@ -64,7 +62,6 @@ function App() {
           <div>
             <ul>
               <li>Filipe Ribeiro</li>
-              <li>Logout</li>
             </ul>
           </div>
         </div>
