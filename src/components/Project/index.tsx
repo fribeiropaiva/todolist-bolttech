@@ -14,6 +14,7 @@ interface ProjectProps {
 const Project = ({ todos, name, id}:ProjectProps) => {
   const [projectTodos, setProjectTodos] = useState(todos);
   const [newTodo, setNewTodo] = useState('');
+  const [dones, setDones] = useState<Array<ToDoProps>>([])
 
   const handleTodoCreation = () => {
     const todo = {
@@ -29,6 +30,20 @@ const Project = ({ todos, name, id}:ProjectProps) => {
     const updatedTodos = projectTodos.filter(todo => todo.id !== id);
 
     setProjectTodos(updatedTodos);
+  }
+
+  const handleTodoCompletion = (id: string) => {
+    const updatedTodos = projectTodos.filter(todo => {
+      if (todo.id === id) {
+        todo.isCompleted = true;
+      }
+      return todo;
+    });
+
+    const completedTodos = updatedTodos.filter(todo => todo.isCompleted === true);
+
+    setProjectTodos(updatedTodos);
+    setDones(completedTodos);
   }
 
   return (
@@ -48,16 +63,16 @@ const Project = ({ todos, name, id}:ProjectProps) => {
             <p>To Do</p>
             <ul>
               {projectTodos.map((todo:ToDoProps) => {
-                return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTask={() => console.log('editing')} deleteTodo={handleTodoDeletion} handleTaskCompletion={() => console.log('completing')} />
+                return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTask={() => console.log('editing')} deleteTodo={handleTodoDeletion} completeTodo={handleTodoCompletion} />
               })}
             </ul>
           </div>
           <div className='dones-container'>
             <p>Done</p>
             <ul className='todo-list'>
-              {projectTodos.map((todo: ToDoProps) => {
+              {dones.map((todo: ToDoProps) => {
                   if (todo.isCompleted) {
-                    return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTask={() => console.log('editing')} deleteTodo={handleTodoDeletion} handleTaskCompletion={() => console.log('completing')} />
+                    return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTask={() => console.log('editing')} deleteTodo={handleTodoDeletion} completeTodo={handleTodoCompletion} />
                   }
                 })
               }

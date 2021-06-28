@@ -9,10 +9,10 @@ export interface ToDoProps {
   isChecked: boolean;
   editTask: (id:number, newTaskName:string) => void;
   deleteTodo: (id:string) => void;
-  handleTaskCompletion: (id:number) => void;
+  completeTodo: (id:string) => void;
 }
 
-const ToDo = ({id, taskName, isChecked, editTask, deleteTodo, handleTaskCompletion }: ToDoProps) => {
+const ToDo = ({id, taskName, isChecked, editTask, deleteTodo, completeTodo }: ToDoProps) => {
   const [editingMode, setEditingMode] = useState(false);
   const [newTaskName, setNewTaskName] = useState('')
 
@@ -29,7 +29,7 @@ const ToDo = ({id, taskName, isChecked, editTask, deleteTodo, handleTaskCompleti
             type='checkbox'
             readOnly
             checked={isChecked}
-            onChange={() => console.log('completing')}
+            onChange={() => completeTodo(id)}
           />
           <span className='checkmark'></span>
         </label>
@@ -50,10 +50,12 @@ const ToDo = ({id, taskName, isChecked, editTask, deleteTodo, handleTaskCompleti
         : <p>{taskName}</p>
         }
       </div>
-      <div className='action-buttons'>
-        <button className='edit-button' type='button' onClick={() => console.log('editing')}><MdEdit size={15}/></button>
-        <button className='delete-button' type='button' onClick={() => deleteTodo(id)}><RiDeleteBinLine size={15}/></button>
-      </div>
+      {!isChecked &&
+        <div className='action-buttons'>
+          <button className='edit-button' type='button' onClick={() => console.log('editing')}><MdEdit size={15}/></button>
+          <button className='delete-button' type='button' onClick={() => deleteTodo(id)}><RiDeleteBinLine size={15}/></button>
+        </div>
+      }
     </Container>
   )
 }
