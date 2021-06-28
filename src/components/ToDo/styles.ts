@@ -5,7 +5,6 @@ export const Container = styled.li`
   list-style: none;
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
 
   .task-check {
     display: flex;
@@ -64,18 +63,17 @@ export const Container = styled.li`
 
   .task-editing-input {
     margin-right: 10px;
-    border-radius: 6px;
+    border-radius: 5px;
     border-style: groove;
     padding: 3px;
   }
 
   .save-task-editing {
     padding: 5px;
-    &:hover {
-      background-color: #ffc107;
-      border: 1px solid #ffc107;
-      color: initial;
-    }
+    background-color: #00c137;
+    border-radius: 5px;
+    color: white;
+    border: none;
   }
 
   .action-buttons {

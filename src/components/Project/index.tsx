@@ -46,6 +46,17 @@ const Project = ({ todos, name, id}:ProjectProps) => {
     setDones(completedTodos);
   }
 
+  const handleTodoEditing = (id: string, newTodo: string) => {
+    const updatedTodos = projectTodos.filter(todo => {
+      if (todo.id === id) {
+        todo.name = newTodo;
+      }
+      return todo;
+    });
+
+    setProjectTodos(updatedTodos);
+  }
+
   return (
     <Container key={id} >
       <header>
@@ -63,7 +74,7 @@ const Project = ({ todos, name, id}:ProjectProps) => {
             <p>To Do</p>
             <ul>
               {projectTodos.map((todo:ToDoProps) => {
-                return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTask={() => console.log('editing')} deleteTodo={handleTodoDeletion} completeTodo={handleTodoCompletion} />
+                return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTodo={handleTodoEditing} deleteTodo={handleTodoDeletion} completeTodo={handleTodoCompletion} />
               })}
             </ul>
           </div>
@@ -72,7 +83,7 @@ const Project = ({ todos, name, id}:ProjectProps) => {
             <ul className='todo-list'>
               {dones.map((todo: ToDoProps) => {
                   if (todo.isCompleted) {
-                    return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTask={() => console.log('editing')} deleteTodo={handleTodoDeletion} completeTodo={handleTodoCompletion} />
+                    return <ToDo id={todo.id} taskName={todo.name} isChecked={todo.isCompleted} editTodo={handleTodoEditing} deleteTodo={handleTodoDeletion} completeTodo={handleTodoCompletion} />
                   }
                 })
               }

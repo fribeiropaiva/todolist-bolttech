@@ -7,22 +7,22 @@ export interface ToDoProps {
   id: string;
   taskName: string;
   isChecked: boolean;
-  editTask: (id:number, newTaskName:string) => void;
+  editTodo: (id:string, newTodoName:string) => void;
   deleteTodo: (id:string) => void;
   completeTodo: (id:string) => void;
 }
 
-const ToDo = ({id, taskName, isChecked, editTask, deleteTodo, completeTodo }: ToDoProps) => {
+const ToDo = ({id, taskName, isChecked, editTodo, deleteTodo, completeTodo }: ToDoProps) => {
   const [editingMode, setEditingMode] = useState(false);
-  const [newTaskName, setNewTaskName] = useState('')
+  const [newTodoName, setNewTodoName] = useState(taskName);
 
-  function handleTaskEditing(id:number, newTaskName:string) {
-    editTask(id, newTaskName);
+  const handleTodoEditing = (id:string, newTodoName:string) => {
+    editTodo(id, newTodoName);
     setEditingMode(false);
   }
 
   return (
-    <Container key={id} id={taskName}>
+    <Container key={id} id={id}>
       <div className={`${isChecked ? 'completed' : ''} task-check`}>
         <label className='checkbox-container'>
           <input
@@ -38,13 +38,13 @@ const ToDo = ({id, taskName, isChecked, editTask, deleteTodo, completeTodo }: To
           <input
             className='task-editing-input'
             type='text'
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewTaskName(e.target.value)}
-            value={newTaskName}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewTodoName(e.target.value)}
+            value={newTodoName}
           />
           <button
             className='save-task-editing'
             type='button'
-            onClick={() => console.log('editing')}
+            onClick={() => handleTodoEditing(id, newTodoName)}
             >Save</button>
         </label>
         : <p>{taskName}</p>
@@ -52,7 +52,7 @@ const ToDo = ({id, taskName, isChecked, editTask, deleteTodo, completeTodo }: To
       </div>
       {!isChecked &&
         <div className='action-buttons'>
-          <button className='edit-button' type='button' onClick={() => console.log('editing')}><MdEdit size={15}/></button>
+          <button className='edit-button' type='button' onClick={() => setEditingMode(true)}><MdEdit size={15}/></button>
           <button className='delete-button' type='button' onClick={() => deleteTodo(id)}><RiDeleteBinLine size={15}/></button>
         </div>
       }
