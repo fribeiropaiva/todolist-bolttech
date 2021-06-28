@@ -1,6 +1,7 @@
 import { Container } from './styles';
 import { MdEdit } from 'react-icons/md';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import ToDo from '../ToDo';
 
 const Project = () => {
   return (
@@ -19,19 +20,12 @@ const Project = () => {
           <div className='todos-container'>
             <p>To Do</p>
             <ul>
-              <li>This</li>
-              <li>This</li>
-              <li>This</li>
-              <li>This</li>
+              <ToDo id={3} taskName={'this'} isChecked={false} editTask={() => console.log('editing')} deleteTask={() => console.log('deleting')} handleTaskCompletion={() => console.log('completing')} />
             </ul>
           </div>
           <div className='dones-container'>
             <p>Done</p>
             <ul className='todo-list'>
-              <li>This</li>
-              <li>This</li>
-              <li>This</li>
-              <li>This</li>
             </ul>
           </div>
         </div>
