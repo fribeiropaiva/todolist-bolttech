@@ -12,10 +12,12 @@ export const Container = styled.section`
   .inner-container {
     padding: 10%;
     flex-shrink: 0;
+    width: 100%;
 
     h1 {
       font-size: 2rem;
       margin-bottom: 10px;
+      text-align: center;
     }
 
     input {

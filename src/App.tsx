@@ -22,6 +22,8 @@ function App() {
   const [projects, setNewProjects] = useState<Array<ProjectProps>>([]);
 
   const createNewProject = (projectName: string) => {
+    if (!projectName) return;
+
     const now = new Date();
     const newProject = {
       name: projectName,
@@ -31,12 +33,9 @@ function App() {
       dones: []
     }
 
-    console.log(newProject)
-
     //send to db
 
     setNewProjects((projects: Array<ProjectProps>) => [...projects, newProject]);
-    console.log(projects);
   }
 
   const handleProjectDeletion = (id:string) => {

@@ -21,6 +21,7 @@ const Project = ({ todos, name, id, deleteProject, editProject }:ProjectProps) =
   const [newProjectName, setNewProjectName] = useState(name);
 
   const handleTodoCreation = () => {
+    if (!newTodo) return;
     const todo = {
       name: newTodo,
       id: name + newTodo + id,
